@@ -12,3 +12,4 @@ section {
   border: 1px solid #ddd;
   border-radius: 8px;
 }
+.espacador { flex: 1 1 auto; }
