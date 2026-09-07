@@ -1,1 +1,82 @@
-<p>contato works!</p>
+<h2>Fale comigo</h2>
+
+<p class="descricao">
+  Preencha o formulário abaixo para entrar em contato.
+</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="campo">
+    <label for="nome">Nome</label>
+
+    <input
+      id="nome"
+      type="text"
+      formControlName="nome"
+      [class.invalido]="form.get('nome')?.invalid && form.get('nome')?.touched"
+      [attr.aria-invalid]="form.get('nome')?.invalid && form.get('nome')?.touched"
+    >
+
+    @if (form.get('nome')?.invalid && form.get('nome')?.touched) {
+      <p class="erro-campo" role="alert">
+        ⚠ Informe um nome com no mínimo 3 letras.
+      </p>
+    }
+  </div>
+
+  <div class="campo">
+    <label for="email">E-mail</label>
+
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      [class.invalido]="form.get('email')?.invalid && form.get('email')?.touched"
+      [attr.aria-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+    >
+
+    @if (form.get('email')?.invalid && form.get('email')?.touched) {
+      <p class="erro-campo" role="alert">
+        ⚠ Informe um e-mail válido.
+      </p>
+    }
+  </div>
+
+  <div class="campo">
+    <label for="mensagem">Mensagem</label>
+
+    <textarea
+      id="mensagem"
+      formControlName="mensagem"
+      rows="5"
+      [class.invalido]="form.get('mensagem')?.invalid && form.get('mensagem')?.touched"
+      [attr.aria-invalid]="form.get('mensagem')?.invalid && form.get('mensagem')?.touched"
+    ></textarea>
+
+    @if (form.get('mensagem')?.invalid && form.get('mensagem')?.touched) {
+      <p class="erro-campo" role="alert">
+        ⚠ A mensagem deve ter no mínimo 10 caracteres.
+      </p>
+    }
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="form.invalid || enviando"
+  >
+    {{ enviando ? 'Enviando...' : 'Enviar' }}
+  </button>
+
+</form>
+
+@if (sucesso) {
+  <p class="ok" role="status">
+    ✓ {{ sucesso }}
+  </p>
+}
+
+@if (erro) {
+  <p class="erro" role="alert">
+    ⚠ {{ erro }}
+  </p>
+}

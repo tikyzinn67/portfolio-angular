@@ -1,0 +1,26 @@
+<h1>Catálogo de Tecnologias</h1>
+<p class="subtitulo">Tecnologias cadastradas no banco de dados.</p>
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+<div class="grade">
+  @for (tecnologia of tecnologias; track tecnologia.id) {
+    <div class="card">
+      <h2>{{ tecnologia.nome }}</h2>
+
+      <p>
+        <strong>Categoria:</strong>
+        {{ tecnologia.categoria }}
+      </p>
+
+      <p>{{ tecnologia.descricao }}</p>
+
+      <p>
+        <strong>Ano de criação:</strong>
+        {{ tecnologia.ano_criacao }}
+      </p>
+    </div>
+  }
+</div>

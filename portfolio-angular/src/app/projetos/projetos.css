@@ -1,0 +1,112 @@
+:host {
+  display: block;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+  background: linear-gradient(90deg, #ffffff, #8db7ff, #b79cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitulo {
+  color: #9aa7c2;
+  margin-bottom: 28px;
+  font-size: 16px;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  padding: 24px;
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 26, 46, 0.94),
+      rgba(22, 18, 44, 0.94)
+    );
+  border: 1px solid rgba(115, 100, 255, 0.22);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    0 0 26px rgba(73, 87, 255, 0.06);
+  transition:
+    transform 0.25s,
+    border 0.25s,
+    box-shadow 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 113, 255, 0.42);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.34),
+    0 0 30px rgba(94, 74, 255, 0.11);
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  background: linear-gradient(90deg, #8db7ff, #b79cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card p {
+  color: #c5cee0;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.card strong {
+  color: #eef2ff;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 9px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow:
+    0 7px 20px rgba(37, 99, 235, 0.16),
+    0 4px 16px rgba(124, 58, 237, 0.14);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card a:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 26px rgba(37, 99, 235, 0.22),
+    0 6px 20px rgba(124, 58, 237, 0.18);
+}
+
+.erro {
+  padding: 13px 16px;
+  border-radius: 10px;
+  color: #ffc1c1;
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 29px;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}

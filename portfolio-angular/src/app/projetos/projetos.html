@@ -1,1 +1,32 @@
-<p>projetos works!</p>
+<h1>Projetos</h1>
+
+<p class="subtitulo">
+  Alguns projetos publicados no meu portfólio.
+</p>
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+<div class="grade">
+  @for (projeto of projetos; track projeto.id) {
+    <div class="card">
+      <h2>{{ projeto.nome }}</h2>
+
+      <p>{{ projeto.descricao }}</p>
+
+      <p>
+        <strong>Tecnologias:</strong>
+        {{ projeto.tecnologias }}
+      </p>
+
+      <p>
+        <strong>Ano:</strong>
+        {{ projeto.ano }}
+      </p>
+
+      <a [href]="projeto.link_github" target="_blank">
+        Ver no GitHub
+      </a>
+    </div>
+  }
+</div>
