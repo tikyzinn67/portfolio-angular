@@ -1,36 +1,232 @@
 .gestao {
-  max-width: 760px;
-  margin: 0 auto;
+  width: min(900px, calc(100% - 40px));
+  margin: 50px auto;
+  color: #f8fafc;
+}
+
+.gestao > h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gestao form {
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 38px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.gestao form h3 {
+  margin-top: 0;
+  margin-bottom: 22px;
+  font-size: 1.4rem;
+  color: #e2e8f0;
 }
 
 .gestao label {
   display: block;
-  margin-top: 12px;
+  margin-top: 16px;
+  margin-bottom: 7px;
   font-weight: 600;
+  color: #cbd5e1;
 }
 
 .gestao input,
-.gestao textarea {
+.gestao textarea,
+.gestao select {
   width: 100%;
-  padding: 6px;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0b1120;
+  color: #f8fafc;
+  font-size: 1rem;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.gestao textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.gestao select {
+  cursor: pointer;
+}
+
+.gestao input:focus,
+.gestao textarea:focus,
+.gestao select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.22);
 }
 
 .gestao button {
-  margin-top: 12px;
-  margin-right: 8px;
-  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  transition:
+    transform 0.2s,
+    filter 0.2s,
+    box-shadow 0.2s;
+}
+
+.gestao form > button {
+  margin-top: 22px;
+}
+
+.gestao button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+}
+
+.gestao button:focus-visible,
+.gestao input:focus-visible,
+.gestao textarea:focus-visible,
+.gestao select:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+.gestao button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.gestao > h3 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+  color: #f1f5f9;
 }
 
 .linha-projeto {
   display: flex;
-  gap: 12px;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #d9d9d9;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.linha-projeto:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.55);
+  background: rgba(30, 41, 59, 0.9);
+}
+
+.info-projeto {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-projeto strong {
+  color: #e2e8f0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.status-projeto {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-transform: capitalize;
+}
+
+.linha-projeto button {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.botao-excluir {
+  background: linear-gradient(135deg, #b91c1c, #ef4444) !important;
 }
 
 .erro-campo {
-  color: #b00020;
+  margin: 7px 0 0;
+  color: #fca5a5;
   font-size: 0.9rem;
-  margin: 4px 0 0;
+  font-weight: 500;
+}
+
+.estado-info {
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(30, 64, 175, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #bfdbfe;
+}
+
+.estado-erro {
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(127, 29, 29, 0.18);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fecaca;
+}
+
+.lista-vazia {
+  padding: 24px;
+  border: 1px dashed #475569;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #cbd5e1;
+}
+
+.lista-vazia strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #f8fafc;
+}
+
+.lista-vazia p {
+  margin: 0;
+  color: #94a3b8;
+}
+
+@media (max-width: 650px) {
+  .gestao {
+    width: min(100% - 24px, 900px);
+    margin: 30px auto;
+  }
+
+  .gestao form {
+    padding: 20px;
+  }
+
+  .linha-projeto {
+    flex-wrap: wrap;
+  }
+
+  .info-projeto {
+    flex-basis: 100%;
+  }
+
+  .linha-projeto button {
+    flex: 1;
+  }
 }

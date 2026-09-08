@@ -1,32 +1,60 @@
-<h1>Projetos</h1>
+<section class="projetos-page">
+  <div class="cabecalho-projetos">
+    <h1>Meus Projetos</h1>
+    <p>
+      Alguns projetos e atividades que desenvolvi durante o curso.
+    </p>
+  </div>
 
-<p class="subtitulo">
-  Alguns projetos publicados no meu portfólio.
-</p>
-@if (erro) {
-  <p class="erro">{{ erro }}</p>
-}
-
-<div class="grade">
-  @for (projeto of projetos; track projeto.id) {
-    <div class="card">
-      <h2>{{ projeto.nome }}</h2>
-
-      <p>{{ projeto.descricao }}</p>
-
-      <p>
-        <strong>Tecnologias:</strong>
-        {{ projeto.tecnologias }}
-      </p>
-
-      <p>
-        <strong>Ano:</strong>
-        {{ projeto.ano }}
-      </p>
-
-      <a [href]="projeto.link_github" target="_blank">
-        Ver no GitHub
-      </a>
+  @if (carregando) {
+    <div class="estado-info">
+      Carregando projetos...
     </div>
   }
-</div>
+
+  @if (erro) {
+    <div class="estado-erro">
+      ⚠ {{ erro }}
+    </div>
+  }
+
+  @if (!carregando && !erro && projetos.length === 0) {
+    <div class="lista-vazia">
+      <strong>Nenhum projeto publicado ainda.</strong>
+      <p>
+        Quando um projeto for publicado, ele aparecerá aqui.
+      </p>
+    </div>
+  }
+
+  @if (!carregando && !erro && projetos.length > 0) {
+    <div class="grid-projetos">
+      @for (p of projetos; track p.id) {
+        <article class="card-projeto">
+          <div class="card-topo">
+            <h2>{{ p.nome }}</h2>
+            <span class="ano">{{ p.ano }}</span>
+          </div>
+
+          <p class="descricao">
+            {{ p.descricao }}
+          </p>
+
+          <div class="tecnologias">
+            {{ p.tecnologias }}
+          </div>
+
+          @if (p.link_github) {
+            <a
+              class="botao-github"
+              [href]="p.link_github"
+              target="_blank"
+              rel="noopener noreferrer">
+              Ver no GitHub
+            </a>
+          }
+        </article>
+      }
+    </div>
+  }
+</section>

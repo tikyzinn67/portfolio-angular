@@ -8,7 +8,9 @@
     <input id="nome" formControlName="nome">
 
     @if (form.controls.nome.touched && form.controls.nome.invalid) {
-      <p class="erro-campo">⚠ Informe o nome do projeto (mínimo 4 letras).</p>
+      <p class="erro-campo">
+        ⚠ Informe o nome do projeto com pelo menos 4 letras.
+      </p>
     }
 
     <label for="descricao">Descrição</label>
@@ -19,44 +21,102 @@
     </textarea>
 
     <label for="tecnologias">Tecnologias</label>
-    <input id="tecnologias" formControlName="tecnologias">
+    <input
+      id="tecnologias"
+      formControlName="tecnologias">
 
     <label for="link_github">Link do GitHub</label>
-    <input id="link_github" formControlName="link_github">
+    <input
+      id="link_github"
+      formControlName="link_github">
 
     <label for="ano">Ano</label>
-    <input id="ano" type="number" formControlName="ano">
+    <input
+      id="ano"
+      type="number"
+      formControlName="ano">
 
     @if (form.controls.ano.touched && form.controls.ano.invalid) {
-      <p class="erro-campo">⚠ Informe o ano do projeto (ex.: 2026).</p>
+      <p class="erro-campo">
+        ⚠ Informe o ano do projeto.
+      </p>
     }
 
-    <button type="submit" [disabled]="salvando">
-      {{ salvando ? 'Salvando...' : (editandoId ? 'Salvar alterações' : 'Adicionar projeto') }}
+    <label for="status">Status</label>
+    <select
+      id="status"
+      formControlName="status">
+
+      <option value="rascunho">
+        Rascunho
+      </option>
+
+      <option value="publicado">
+        Publicado
+      </option>
+    </select>
+
+    <button
+      type="submit"
+      [disabled]="salvando">
+
+      {{
+        salvando
+          ? 'Salvando...'
+          : (editandoId
+              ? 'Salvar alterações'
+              : 'Adicionar projeto')
+      }}
     </button>
   </form>
 
   <h3>Projetos cadastrados</h3>
 
   @if (carregando) {
-    <p>Carregando projetos...</p>
+    <div class="estado-info">
+      Carregando projetos...
+    </div>
   }
 
   @if (erro) {
-    <p class="erro-campo">⚠ {{ erro }}</p>
+    <div class="estado-erro">
+      ⚠ {{ erro }}
+    </div>
+  }
+
+  @if (!carregando && !erro && projetos.length === 0) {
+    <div class="lista-vazia">
+      <strong>Nenhum projeto cadastrado ainda.</strong>
+      <p>
+        Use o formulário acima para adicionar seu primeiro projeto.
+      </p>
+    </div>
   }
 
   @for (p of projetos; track p.id) {
     <div class="linha-projeto">
-      <span>{{ p.nome }}</span>
 
-      <button type="button" (click)="editar(p)">
+      <div class="info-projeto">
+        <strong>{{ p.nome }}</strong>
+
+        <span class="status-projeto">
+          Status: {{ p.status }}
+        </span>
+      </div>
+
+      <button
+        type="button"
+        (click)="editar(p)">
         Editar
       </button>
 
-      <button type="button" (click)="excluir(p)">
+      <button
+        type="button"
+        class="botao-excluir"
+        (click)="excluir(p)">
         Excluir
       </button>
+
     </div>
   }
 </section>

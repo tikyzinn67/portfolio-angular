@@ -110,3 +110,41 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+.estado-info,
+.estado-erro,
+.lista-vazia {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.estado-info {
+  background: rgba(30, 64, 175, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #bfdbfe;
+}
+
+.estado-erro {
+  background: rgba(127, 29, 29, 0.18);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fecaca;
+}
+
+.lista-vazia {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px dashed #475569;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+.lista-vazia strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #f8fafc;
+}
+
+.lista-vazia p {
+  margin: 0;
+  color: #94a3b8;
+}

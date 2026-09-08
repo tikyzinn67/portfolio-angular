@@ -12,16 +12,26 @@ export class Projetos implements OnInit {
   private cdr = inject(ChangeDetectorRef);
 
   projetos: Projeto[] = [];
+  carregando = true;
   erro = '';
 
   ngOnInit(): void {
+    this.carregar();
+  }
+
+  carregar(): void {
+    this.carregando = true;
+    this.erro = '';
+
     this.projetoService.listar().subscribe({
       next: (dados) => {
         this.projetos = dados;
+        this.carregando = false;
         this.cdr.detectChanges();
       },
       error: () => {
-        this.erro = 'Erro ao carregar os projetos.';
+        this.erro = 'Não foi possível carregar os projetos.';
+        this.carregando = false;
         this.cdr.detectChanges();
       }
     });
