@@ -20,7 +20,39 @@ cd portfolio-angular
 ng serve
 ```
 
-O Angular fica disponível na porta 4200. Se o endereço do Codespace mudar, atualize a URL da API em `portfolio-angular/src/app/projeto.service.ts`.
+O Angular fica disponível na porta 4200.
+
+Se o endereço do Codespace mudar, atualize a URL da API em:
+
+- `portfolio-angular/src/app/projeto.service.ts`
+- `portfolio-angular/src/app/tecnologia.service.ts`
+
+## Aula 17 - Angular Consumindo a API
+
+Na Aula 17 conectei o Portfólio Angular à API usando `HttpClient` e services.
+
+A tela de Projetos consome os dados de `api/projetos.php` por meio do `ProjetoService`, exibindo os projetos cadastrados no banco. A tela trata os estados de carregamento, erro e lista vazia.
+
+Também implementei a tela de Catálogo, que consome os dados da API por meio do `TecnologiaService`.
+
+Nos projetos que possuem repositório, o botão "Ver no GitHub" utiliza property binding com `[href]` para abrir o endereço armazenado na API.
+
+Mantive as URLs e as requisições HTTP dentro dos services. Dessa forma, os componentes ficam responsáveis pela lógica e exibição da interface, enquanto os services ficam responsáveis pela comunicação com a API.
+
+### 🎯 Autoavaliação - Atividade 13 / Aula 17
+
+**Conceito pretendido: A**
+
+Considero que alcancei o conceito A porque implementei os requisitos dos níveis C e B e também um acabamento do nível A.
+
+- **Consumo da API em Projetos:** `portfolio-angular/src/app/projeto.service.ts` realiza o GET e `portfolio-angular/src/app/projetos/projetos.ts` recebe os dados da API.
+- **Exibição dos projetos:** `portfolio-angular/src/app/projetos/projetos.html` utiliza `@for` e trata carregamento, erro e lista vazia.
+- **Catálogo:** `portfolio-angular/src/app/tecnologia.service.ts` concentra o acesso à API de tecnologias e `portfolio-angular/src/app/catalogo/catalogo.ts` utiliza o service para buscar os dados.
+- **Botão Ver no GitHub:** `portfolio-angular/src/app/projetos/projetos.html` utiliza `[href]="p.link_github"` para abrir o repositório correspondente.
+- **Boas práticas Angular:** as URLs e chamadas HTTP ficam nos services, sem fazer as requisições diretamente nos componentes.
+- **Iniciativa para o conceito A:** tratei o estado de lista vazia e mantive o acesso aos dados separado nos services.
+
+Por esses motivos, considero que a Atividade 13 da Aula 17 atende ao conceito A.
 
 ## Aula 18 - Formulário de Contato
 
@@ -115,7 +147,9 @@ Fonte consultada: https://carbondesignsystem.com/patterns/empty-states-pattern/
 ### Por que não usei um link para excluir
 
 Um `<a href>` não deve apagar um projeto porque um link comum faz GET, e GET deve ser uma operação de leitura.
+
 Na minha implementação, a exclusão usa DELETE; confirmei no Network que ela retornou 204.
+
 Se a exclusão acontecesse por GET, apenas visitar ou pré-carregar aquela URL poderia apagar um registro sem intenção.
 
 ## 📋 Ficha de Diagnóstico
@@ -126,30 +160,33 @@ Também percebi que, depois de criar ou editar, a lista só mostrava a mudança 
 
 Acrescentei estados visíveis de carregamento, erro e lista vazia, além de foco visível nos campos e botões e ajustes para telas menores.
 
+Testei a Área de Gestão em resolução de celular e confirmei que os campos e a lista permanecem dentro da largura da tela, sem rolagem horizontal. Também testei a navegação pela tecla Tab e o foco permanece visível.
+
 Decidi não trocar o `confirm()` nativo por `MatDialog`, porque escolhi como polimento pesquisado o estado de lista vazia. O `confirm()` continua pedindo confirmação com o nome do projeto antes de excluir.
 
-## 🎯 Autoavaliação
+## 🎯 Autoavaliação - Atividade 15 / Aula 19
 
 **Conceito pretendido: A**
 
 Considero que alcancei o conceito A porque completei os requisitos dos níveis C e B e também implementei os itens pedidos para o nível A.
 
 - **R1 — API com CRUD e tratamento dos verbos:** `api/projetos.php`, linhas 23-246. POST retorna 201 nas linhas 65-123, PUT é tratado nas linhas 125-208 e DELETE nas linhas 210-240.
-- **R1 — erros previstos:** `api/projetos.php`, linhas 72-92, 127-135, 185-200, 212-239 e 242-246. Os testes 400, 404 e 405 estão neste `README.md`, linhas 56-75.
-- **R1 — pré-voo OPTIONS:** `api/projetos.php`, linhas 4-18. O teste e a explicação estão neste `README.md`, linhas 101-105.
+- **R1 — erros previstos:** `api/projetos.php`, linhas 72-92, 127-135, 185-200, 212-239 e 242-246. Os testes 400, 404 e 405 estão neste `README.md`, linhas 86-105.
+- **R1 — pré-voo OPTIONS:** `api/projetos.php`, linhas 4-19. O teste e a explicação estão neste `README.md`, linhas 131-135.
 - **R2 — operações feitas pelo service:** `portfolio-angular/src/app/projeto.service.ts`, linhas 18-51. A URL fica no service e os métodos de leitura, criação, alteração e exclusão usam `HttpClient`.
 - **R2 — status rascunho/publicado:** `portfolio-angular/src/app/gestao/gestao.ts`, linhas 28-42 e 69-80; `portfolio-angular/src/app/gestao/gestao.html`, linhas 45-57 e 96-105; `api/projetos.php`, linhas 25-63, 82-114 e 152-183.
 - **R2 — erros visíveis:** `portfolio-angular/src/app/gestao/gestao.ts`, linhas 48-66, 116-127, 131-164 e 167-179; `portfolio-angular/src/app/gestao/gestao.html`, linhas 75-94.
-- **R2 — polimento pesquisado:** `portfolio-angular/src/app/gestao/gestao.html`, linhas 87-94. A pesquisa está neste `README.md`, linhas 107-113.
+- **R2 — polimento pesquisado:** `portfolio-angular/src/app/gestao/gestao.html`, linhas 87-94. A pesquisa está neste `README.md`, linhas 137-143.
 - **R3 — lista atualiza sem F5 e formulário volta ao modo Adicionar:** `portfolio-angular/src/app/gestao/gestao.ts`, linhas 83-128. No Excluir, o `filter()` que atualiza a lista local está nas linhas 148-154.
-- **R4 — justificativa dos quatro verbos:** este `README.md`, linhas 31-35.
-- **R4 — registro do Network:** este `README.md`, linhas 79-87, com método PUT, status 200 e Content-Type.
-- **R4 — comparação das estratégias:** este `README.md`, linhas 95-99.
-- **R4 — objeção ao link que apaga:** este `README.md`, linhas 115-119, usando o DELETE 204 observado no Network como evidência.
-- **R5 — instruções de execução:** este `README.md`, linhas 5-23.
+- **R4 — justificativa dos quatro verbos:** este `README.md`, linhas 63-67.
+- **R4 — registro do Network:** este `README.md`, linhas 109-117, com método PUT, status 200 e Content-Type.
+- **R4 — comparação das estratégias:** este `README.md`, linhas 125-129.
+- **R4 — objeção ao link que apaga:** este `README.md`, linhas 145-151, usando o DELETE 204 observado no Network como evidência.
+- **R5 — instruções de execução:** este `README.md`, linhas 5-28.
+- **R5 — viewport responsivo:** `portfolio-angular/src/index.html`, linha 7.
 - **R5 — estados da Gestão:** `portfolio-angular/src/app/gestao/gestao.html`, linhas 75-94.
 - **R5 — estados da página pública:** `portfolio-angular/src/app/projetos/projetos.html`, linhas 9-28.
 - **R5 — foco visível e responsividade:** `portfolio-angular/src/app/gestao/gestao.css`, linhas 99-105 e 211-232.
-- **R5 — Ficha de Diagnóstico:** este `README.md`, linhas 121-129.
+- **R5 — Ficha de Diagnóstico:** este `README.md`, linhas 153-163.
 
-Por esses motivos, considero que o projeto atende ao conceito A.
+Por esses motivos, considero que o projeto atende ao conceito A na Atividade 15 da Aula 19.
