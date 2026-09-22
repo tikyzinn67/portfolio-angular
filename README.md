@@ -190,3 +190,29 @@ Considero que alcancei o conceito A porque completei os requisitos dos níveis C
 - **R5 — Ficha de Diagnóstico:** este `README.md`, linhas 153-163.
 
 Por esses motivos, considero que o projeto atende ao conceito A na Atividade 15 da Aula 19.
+
+## API em Node - Aula 21
+
+Criei uma segunda versão da API do Portfólio em JavaScript utilizando Node.js e Express, dentro da pasta `api-node`.
+
+O endpoint `GET /api/projetos` mantém o mesmo formato de dados usado anteriormente pela API em PHP. Por isso, o Angular continua funcionando e foi necessário alterar apenas a URL do `ProjetoService`.
+
+### Como rodar
+
+```bash
+cd api-node
+npm install
+node server.js
+```
+
+A API fica disponível na porta 3000.
+
+Para testar:
+
+```bash
+curl -i http://localhost:3000/api/projetos
+```
+
+O projeto utiliza CORS para permitir que o Angular acesse a API em outra porta.
+
+A pasta `node_modules/` não é enviada ao GitHub porque pode ser reconstruída com `npm install`.

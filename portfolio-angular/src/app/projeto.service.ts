@@ -19,7 +19,7 @@ export class ProjetoService {
   private http = inject(HttpClient);
 
   private url =
-    'https://organic-disco-7vqxpxg7wjj53wq-8000.app.github.dev/api/projetos.php';
+  'https://organic-disco-7vqxpxg7wjj53wq-3000.app.github.dev/api/projetos';
 
   listar(): Observable<Projeto[]> {
     return this.http.get<Projeto[]>(this.url);
