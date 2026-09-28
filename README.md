@@ -216,3 +216,25 @@ curl -i http://localhost:3000/api/projetos
 O projeto utiliza CORS para permitir que o Angular acesse a API em outra porta.
 
 A pasta `node_modules/` não é enviada ao GitHub porque pode ser reconstruída com `npm install`.
+
+### Aula 22: a API lê do banco
+
+Antes de subir a API, o MariaDB precisa estar ligado:
+
+```bash
+sudo service mariadb start
+cd api-node
+node server.js
+```
+
+Rotas que leem do `dwii_db`:
+
+```bash
+curl -i http://localhost:3000/api/projetos
+curl -i http://localhost:3000/api/projetos/1
+curl -i http://localhost:3000/api/tecnologias
+```
+
+Na Aula 22 a lista fixa saiu do `server.js`. A API em Node passou a consultar o MariaDB usando `mysql2`, `async` e `await`.
+
+As rotas também tratam falhas do banco e devolvem erro 500 em JSON.

@@ -1,87 +1,62 @@
 const express = require('express');
 const cors = require('cors');
+const pool = require('./db');
 
 const app = express();
 const PORTA = 3000;
 
 app.use(cors());
 
-const projetos = [
-    {
-        id: 1,
-        nome: 'Meu Portfolio',
-        descricao: 'Portfolio desenvolvido nas aulas de Desenvolvimento Web II.',
-        tecnologias: 'Angular, TypeScript, PHP, MariaDB',
-        link_github: 'https://github.com/tikyzinn67/portfolio-angular',
-        ano: 2026
-    },
-    {
-        id: 2,
-        nome: '2026-DWII',
-        descricao: 'Projetos e atividades desenvolvidos na disciplina de Desenvolvimento Web II.',
-        tecnologias: 'PHP, MariaDB, Angular, TypeScript',
-        link_github: 'https://github.com/tikyzinn67/2026-DWII',
-        ano: 2026
-    },
-    {
-        id: 3,
-        nome: 'Area de Gestao do Portfolio',
-        descricao: 'Area para cadastrar, editar e excluir projetos do portfolio.',
-        tecnologias: 'Angular, TypeScript, PHP, MariaDB',
-        link_github: 'https://github.com/tikyzinn67/portfolio-angular',
-        ano: 2026
-    }
-];
-
-const tecnologias = [
-    {
-        nome: 'HTML',
-        categoria: 'Front-end',
-        descricao: 'Estrutura das paginas web.',
-        ano_criacao: 1993
-    },
-    {
-        nome: 'CSS',
-        categoria: 'Front-end',
-        descricao: 'Estilizacao das paginas web.',
-        ano_criacao: 1996
-    },
-    {
-        nome: 'PHP',
-        categoria: 'Back-end',
-        descricao: 'Linguagem utilizada para desenvolvimento da API.',
-        ano_criacao: 1995
-    },
-    {
-        nome: 'MariaDB',
-        categoria: 'Banco de dados',
-        descricao: 'Banco de dados utilizado pelo portfolio.',
-        ano_criacao: 2009
-    },
-    {
-        nome: 'Angular',
-        categoria: 'Front-end',
-        descricao: 'Framework utilizado para desenvolver o portfolio.',
-        ano_criacao: 2016
-    },
-    {
-        nome: 'TypeScript',
-        categoria: 'Linguagem',
-        descricao: 'Linguagem utilizada no desenvolvimento Angular.',
-        ano_criacao: 2012
-    }
-];
-
 app.get('/', (req, res) => {
     res.send('API do Portfolio em Node: no ar');
 });
 
-app.get('/api/projetos', (req, res) => {
-    res.json(projetos);
+app.get('/api/projetos', async (req, res) => {
+    try {
+        const sql = "SELECT id, nome, descricao, tecnologias, link_github, ano FROM projetos WHERE status = 'publicado' ORDER BY ano DESC, id";
+
+        const [projetos] = await pool.query(sql);
+
+        res.json(projetos);
+    } catch (erro) {
+        res.status(500).json({
+            erro: 'Falha no servidor: ' + erro.message
+        });
+    }
 });
 
-app.get('/api/tecnologias', (req, res) => {
-    res.json(tecnologias);
+app.get('/api/projetos/:id', async (req, res) => {
+    try {
+        const sql = "SELECT id, nome, descricao, tecnologias, link_github, ano FROM projetos WHERE id = ? AND status = 'publicado'";
+
+        const [linhas] = await pool.execute(sql, [req.params.id]);
+
+        if (linhas.length === 0) {
+            return res.status(404).json({
+                erro: 'Projeto nao encontrado'
+            });
+        }
+
+        res.json(linhas[0]);
+    } catch (erro) {
+        res.status(500).json({
+            erro: 'Falha no servidor: ' + erro.message
+        });
+    }
+});
+
+app.get('/api/tecnologias', async (req, res) => {
+    try {
+        const sql = "SELECT id, nome, categoria, descricao, ano_criacao FROM tecnologias WHERE status = 'ativo' ORDER BY categoria, nome";
+
+        const [tecnologias] = await pool.query(sql);
+
+        res.json(tecnologias);
+    } catch (erro) {
+        res.status(500).json({
+            erro: 'Falha no servidor: ' + erro.message
+        });
+    }
 });
 
 app.listen(PORTA, () => {
