@@ -238,3 +238,17 @@ curl -i http://localhost:3000/api/tecnologias
 Na Aula 22 a lista fixa saiu do `server.js`. A API em Node passou a consultar o MariaDB usando `mysql2`, `async` e `await`.
 
 As rotas também tratam falhas do banco e devolvem erro 500 em JSON.
+
+### Aula 23: a API cria, altera e apaga
+
+A API em uso é a de `api-node/`. Os arquivos `api/*.php` e `conexao.php` ficam no repositório como histórico do 2º trimestre.
+
+Como testar:
+
+```bash
+curl -i -X POST http://localhost:3000/api/projetos -H "Content-Type: application/json" -d '{"nome":"Projeto de teste","ano":2026}'
+curl -i -X PUT http://localhost:3000/api/projetos/7 -H "Content-Type: application/json" -d '{"nome":"Projeto de teste (editado)","ano":2026}'
+curl -i -X DELETE http://localhost:3000/api/projetos/7
+```
+
+A gestão do Angular usa essas rotas do Node, e o Network mostra os status corretos.
