@@ -1,7 +1,7 @@
 function Cabecalho() {
   return (
     <header>
-      <h1>Meu Portfólio</h1>
+      <h1>Portfólio de Seu Nome</h1>
       <nav>
         <a href="#">Início</a>
         <a href="#">Sobre</a>
