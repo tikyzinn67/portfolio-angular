@@ -12,4 +12,12 @@ main { max-width: 960px; margin: 48px auto; padding: 0 24px; }
 .card .meta { margin: 0 0 14px; color: #38bdf8; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
 .card a { display: inline-block; margin-top: 12px; padding: 8px 16px; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: 0.2s; }
 .card a:hover { background: #38bdf8; color: #0f172a; }
+.contato { margin-top: 48px; background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 28px; }
+.contato h2 { margin-top: 0; }
+label { display: block; margin: 0 0 16px; font-size: 14px; font-weight: 600; color: #94a3b8; }
+input, textarea { display: block; width: 100%; margin-top: 6px; padding: 10px 14px; background: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; font-family: inherit; font-size: 15px; transition: 0.2s; }
+input:focus, textarea:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
+button { background: #38bdf8; color: #0f172a; border: 0; border-radius: 8px; padding: 10px 20px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+button:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25); }
+.aviso { margin-top: 14px; color: #34d399; font-size: 14px; font-weight: 600; }
 footer { text-align: center; color: #64748b; padding: 40px 20px; font-size: 14px; border-top: 1px solid #1e293b; margin-top: 60px; }

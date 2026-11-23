@@ -278,3 +278,10 @@ O front novo nasce em `portfolio-react/` (Vite + React), ao lado do Angular. Par
     npm run dev
 
 A tela abre na porta 5173. Por enquanto os projetos sao fixos no `src/App.jsx`; a Aula 27 os traz da API.
+
+### Aula 26: estado, lista e formulario
+
+Os projetos sairam do `App.jsx` e moram em `src/projetos.js`. A tela os desenha com `map`.
+
+O formulario de contato (`src/Contato.jsx`) guarda o que a pessoa digita no estado, com `useState`.
+Ele ainda nao envia nada: avisa e limpa os campos. O envio de verdade chega com a API.
