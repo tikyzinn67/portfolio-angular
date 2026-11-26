@@ -295,3 +295,14 @@ Para a tela mostrar os dados, a API precisa estar de pe, com a porta 3000 em Pub
     sudo service mariadb start
     cd api-node
     node server.js
+
+### Aula 28: rotas, login e cadastro
+​
+O front tem dois enderecos: `/` (o Portfolio) e `/gestao` (a area de gestao). Quem troca a tela e o React Router.
+Na gestao, o login pede o token para a API (`POST /api/login`), guarda no navegador e manda no cabecalho
+`Authorization` quando cadastra um projeto (`POST /api/projetos`).
+​
+Para entrar, o usuario precisa existir no banco (Aula 24):
+​
+    cd api-node
+    node criar-usuario.js email senha

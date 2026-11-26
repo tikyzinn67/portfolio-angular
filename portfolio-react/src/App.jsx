@@ -1,48 +1,21 @@
-import { useEffect, useState } from 'react';
-import API from './api.js';
+import { Route, Routes } from 'react-router-dom';
 import Cabecalho from './Cabecalho.jsx';
-import CardProjeto from './CardProjeto.jsx';
-import Catalogo from './Catalogo.jsx';
-import Contato from './Contato.jsx';
+import Gestao from './Gestao.jsx';
+import Inicio from './Inicio.jsx';
+import NaoEncontrada from './NaoEncontrada.jsx';
 import Rodape from './Rodape.jsx';
 
+// App: o componente raiz. O cabecalho e o rodape ficam; o miolo depende do endereco.
 function App() {
-  const [projetos, setProjetos] = useState([]);
-  const [carregando, setCarregando] = useState(true);
-  const [erro, setErro] = useState('');
-
-  async function buscarProjetos() {
-    try {
-      const resposta = await fetch(API + '/api/projetos');
-      if (!resposta.ok) {
-        throw new Error('a API respondeu ' + resposta.status);
-      }
-      const dados = await resposta.json();
-      setProjetos(dados);
-    } catch (falha) {
-      setErro('Não deu para carregar os projetos: ' + falha.message);
-    }
-    setCarregando(false);
-  }
-
-  useEffect(() => {
-    buscarProjetos();
-  }, []);
-
   return (
     <>
       <Cabecalho />
       <main>
-        <h2>Projetos</h2>
-        {carregando && <p>Carregando projetos...</p>}
-        {erro && <p className="erro">{erro}</p>}
-        <div className="cards">
-          {projetos.map((p) => (
-            <CardProjeto key={p.id} projeto={p} />
-          ))}
-        </div>
-        <Catalogo />
-        <Contato />
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/gestao" element={<Gestao />} />
+          <Route path="*" element={<NaoEncontrada />} />
+        </Routes>
       </main>
       <Rodape />
     </>

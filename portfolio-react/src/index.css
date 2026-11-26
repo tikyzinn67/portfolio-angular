@@ -22,4 +22,19 @@ button:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 6
 .aviso { margin-top: 14px; color: #34d399; font-size: 14px; font-weight: 600; }
 footer { text-align: center; color: #64748b; padding: 40px 20px; font-size: 14px; border-top: 1px solid #1e293b; margin-top: 60px; }
 .erro { color: #b91c1c; font-weight: bold; }
-.catalogo { margin-top: 32px; }
+.catalogo { margin-top: 48px; background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 28px; }
+.catalogo h2 { margin-top: 0; }
+.catalogo ul { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.catalogo li { background: #0f172a; border: 1px solid #334155; color: #38bdf8; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.nao-encontrada { text-align: center; background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 48px 24px; }
+.nao-encontrada h2 { margin: 0 0 12px; font-size: 26px; color: #f8fafc; }
+.nao-encontrada p { margin: 0 0 24px; color: #94a3b8; }
+.nao-encontrada a { display: inline-block; background: #38bdf8; color: #0f172a; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: 0.2s; }
+.nao-encontrada a:hover { background: #7dd3fc; transform: translateY(-2px); }
+.gestao { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 32px; } .gestao h2 { margin: 0 0 8px; font-size: 24px;
+  color: #f8fafc;} .gestao p { margin: 0; color: #94a3b8; font-size: 16px; }
+.gestao p.erro, 
+.erro { margin-top: 16px; padding: 10px 14px; background: rgba(248, 113, 113, 0.1); border: 1px solid rgba(248, 113, 113, 0.3); border-radius: 8px; color: #f87171; font-size: 14px; font-weight: 600; }
+.gestao button {
+  margin-top: 16px;
+}

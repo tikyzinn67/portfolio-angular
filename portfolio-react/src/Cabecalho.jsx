@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom';
+
+
 function Cabecalho() {
   return (
     <header>
-      <h1>Portfólio de Seu Nome</h1>
+      <h1>Portfólio de Murilo Moura</h1>
       <nav>
-        <a href="#">Início</a>
-        <a href="#">Sobre</a>
-        <a href="#">Projetos</a>
-        <a href="#">Contato</a>
+        <Link to="/">Início</Link>
+        <Link to="/gestao">Gestão</Link>
       </nav>
     </header>
   );
