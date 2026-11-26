@@ -21,3 +21,5 @@ button { background: #38bdf8; color: #0f172a; border: 0; border-radius: 8px; pad
 button:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25); }
 .aviso { margin-top: 14px; color: #34d399; font-size: 14px; font-weight: 600; }
 footer { text-align: center; color: #64748b; padding: 40px 20px; font-size: 14px; border-top: 1px solid #1e293b; margin-top: 60px; }
+.erro { color: #b91c1c; font-weight: bold; }
+.catalogo { margin-top: 32px; }
