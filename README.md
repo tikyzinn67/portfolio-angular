@@ -306,3 +306,43 @@ Para entrar, o usuario precisa existir no banco (Aula 24):
 ​
     cd api-node
     node criar-usuario.js email senha
+
+    # Meu Portfólio (React + API Node)
+
+Aplicação de portfólio pessoal com front-end em React e back-end em Node.js. O site busca os projetos e tecnologias direto da API e tem uma área administrativa protegida por login para cadastrar e apagar projetos.
+
+## Entrega B: Portfólio em React + API Node
+
+Portfólio pessoal feito com React (`portfolio-react`) no front-end e Node.js (`api-node`) no back-end. Os projetos e o catálogo vêm do banco pela API, e a página de gestão tem login para cadastrar e excluir projetos.
+
+    Como rodar do zero
+
+1. Ligue o MariaDB com `sudo service mariadb start` e verifique se o banco `dwii_db` e as tabelas já estão criados.
+2. Entre na pasta `api-node`, instale as dependências com `npm install` e suba a API com `node server.js`.
+3. Na aba Ports do Codespace, deixe a porta `3000` como Public.
+4. Copie o link da porta `3000` e coloque dentro de `portfolio-react/src/api.js`.
+5. Em outro terminal, entre na pasta `portfolio-react`, rode `npm install` e depois `npm run dev`.
+6. Para criar o usuário de login, entre em `api-node` e rode `node criar-usuario.js email senha`.
+
+    Telas do front-end
+
+- `/` - Página inicial com a apresentação, os projetos do banco (com ano e link do GitHub) e o catálogo de tecnologias.
+- `/gestao` - Área administrativa com login; depois de entrar, mostra o formulário de novo projeto e a lista com botão de excluir.
+- `*` - Página de erro 404 para endereços que não existem.
+
+    O que cada tela pede para a API
+
+| Tela / Ação | Pedido à API | Precisa de token? |
+| :--- | :--- | :--- |
+| Início (`/`) - Listar projetos | `GET /api/projetos` | Não |
+| Início (`/`) - Listar catálogo | `GET /api/tecnologias` | Não |
+| Gestão (`/gestao`) - Login | `POST /api/login` | Não |
+| Gestão (`/gestao`) - Novo projeto | `POST /api/projetos` | Sim (`Bearer`) |
+| Gestão (`/gestao`) - Excluir projeto | `DELETE /api/projetos/:id` | Sim (`Bearer`) |
+
+    O que este front ainda não faz
+
+- Ainda não edita projetos já cadastrados: se eu errar algum dado, preciso apagar o projeto e criar de novo, porque não fiz a parte de edição com PUT.
+- Se o token expirar enquanto estou usando a gestão, o site só mostra a mensagem de erro da API em vez de sair sozinho e voltar para a tela de login.
+
+Uso de IA: usei IA para tirar dúvidas na hora de montar a exclusão com token no React e para organizar esta parte do README.

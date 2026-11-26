@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import API from './api.js';
 
-function NovoProjeto({ token }) {
+function NovoProjeto({ token, aoCadastrar }) {
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
   const [tecnologias, setTecnologias] = useState('');
+  const [ano, setAno] = useState('');
+  const [linkGithub, setLinkGithub] = useState('');
   const [aviso, setAviso] = useState('');
   const [erro, setErro] = useState('');
 
@@ -19,7 +21,13 @@ function NovoProjeto({ token }) {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token,
         },
-        body: JSON.stringify({ nome: nome, descricao: descricao, tecnologias: tecnologias }),
+        body: JSON.stringify({
+          nome: nome,
+          descricao: descricao,
+          tecnologias: tecnologias,
+          ano: ano,
+          link_github: linkGithub,
+        }),
       });
       const dados = await resposta.json();
       if (!resposta.ok) {
@@ -29,6 +37,9 @@ function NovoProjeto({ token }) {
       setNome('');
       setDescricao('');
       setTecnologias('');
+      setAno('');
+      setLinkGithub('');
+      if (aoCadastrar) aoCadastrar();
     } catch (falha) {
       setErro('Não deu para salvar: ' + falha.message);
     }
@@ -59,6 +70,24 @@ function NovoProjeto({ token }) {
           name="tecnologias"
           value={tecnologias}
           onChange={(e) => setTecnologias(e.target.value)}
+        />
+      </label>
+      <label>
+        Ano
+        <input
+          name="ano"
+          type="number"
+          value={ano}
+          onChange={(e) => setAno(e.target.value)}
+        />
+      </label>
+      <label>
+        Link do GitHub
+        <input
+          name="link_github"
+          type="url"
+          value={linkGithub}
+          onChange={(e) => setLinkGithub(e.target.value)}
         />
       </label>
       <button type="submit">Salvar</button>
